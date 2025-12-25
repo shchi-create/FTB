@@ -27,4 +27,8 @@ sheet = spreadsheet.worksheet("test")
 
 def write_to_a1(text: str):
     """Записывает текст в ячейку A1"""
-    sheet.update("A1", text)
+    try:
+        sheet.update("A1", [[text]])
+    except Exception as e:
+        print(f"Ошибка записи в Google Sheet: {e}")
+        raise e
