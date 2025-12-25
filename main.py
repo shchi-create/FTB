@@ -14,7 +14,7 @@ if not BOT_TOKEN:
     raise ValueError("BOT_TOKEN не найден!")
 
 bot = Bot(token=BOT_TOKEN)
-dp = Dispatcher(bot)
+dp = Dispatcher()  # В aiogram 3.5.0 не передаем бот в конструктор
 
 
 @dp.message(Command("start"))
@@ -34,7 +34,7 @@ async def handle_answer(message: types.Message):
 
 async def main():
     print("Bot started")
-    await dp.start_polling(bot)
+    await dp.start_polling(bot)  # бот передается здесь
 
 
 if __name__ == "__main__":
