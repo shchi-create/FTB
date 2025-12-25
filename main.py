@@ -15,13 +15,15 @@ if not BOT_TOKEN:
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
-# Хранилище состояния пользователей
+# Словарь для хранения состояния пользователей
 user_states = {}
 
 @dp.message(Command("start"))
 async def start_handler(message: types.Message):
     user_id = message.from_user.id
-    unique_id = str(uuid.uuid4())  # создаём уникальный ID
+    unique_id = str(uuid.uuid4())
+
+    # Создаем или обновляем состояние пользователя
     user_states[user_id] = {
         "unique_id": unique_id,
         "step": "name",
@@ -68,3 +70,10 @@ async def handle_answer(message: types.Message):
 
         # Удаляем состояние пользователя
         del user_states[user_id]
+
+async def main():
+    print("Bot started")
+    await dp.start_polling(bot)
+
+if __name__ == "__main__":
+    asyncio.run(main())
