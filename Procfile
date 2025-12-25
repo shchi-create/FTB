@@ -1,1 +1,1 @@
-python-3.11.9
+web: python main.py
