@@ -8,7 +8,6 @@ load_dotenv()
 
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 
-# Загружаем credentials из переменной окружения Railway
 creds_json = os.getenv("GOOGLE_CREDS_JSON")
 if not creds_json:
     raise ValueError("GOOGLE_CREDS_JSON не найден!")
@@ -25,10 +24,9 @@ if not spreadsheet_key:
 spreadsheet = client.open_by_key(spreadsheet_key)
 sheet = spreadsheet.worksheet("test")
 
-def write_to_a1(text: str):
-    """Записывает текст в ячейку A1"""
-    try:
-        sheet.update("A1", [[text]])
-    except Exception as e:
-        print(f"Ошибка записи в Google Sheet: {e}")
-        raise e
+def append_user_row(values: list):
+    """
+    Добавляет новую строку в таблицу.
+    values: список [ID, имя, город, дата рождения]
+    """
+    sheet.append_row(values)
