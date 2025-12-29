@@ -29,7 +29,7 @@ async def start_handler(message: types.Message):
         "step": "name",
         "data": {}
     }
-    await message.answer("Привет! Как тебя зовут?")
+    await message.answer("ВНИМАНИЕ! БОТ РАБОТАЕТ В ТЕСТОВОМ РЕЖИМЕ. ОТПРАВЛЯЙТЕ ТОЛЬКО ВЫМЫШЛЕННЫЕ ДАННЫЕ! Привет! Как тебя зовут?")
 
 @dp.message()
 async def handle_answer(message: types.Message):
@@ -46,11 +46,11 @@ async def handle_answer(message: types.Message):
     if step == "name":
         state["data"]["name"] = text
         state["step"] = "city"
-        await message.answer("В каком городе ты живёшь?")
+        await message.answer("ВНИМАНИЕ! БОТ РАБОТАЕТ В ТЕСТОВОМ РЕЖИМЕ. ОТПРАВЛЯЙТЕ ТОЛЬКО ВЫМЫШЛЕННЫЕ ДАННЫЕ! В каком городе ты живёшь?")
     elif step == "city":
         state["data"]["city"] = text
         state["step"] = "birthdate"
-        await message.answer("Укажи дату рождения (например, 25.12.2000)")
+        await message.answer("ВНИМАНИЕ! БОТ РАБОТАЕТ В ТЕСТОВОМ РЕЖИМЕ. ОТПРАВЛЯЙТЕ ТОЛЬКО ВЫМЫШЛЕННЫЕ ДАННЫЕ! Укажи дату рождения (например, 25.12.2000)")
     elif step == "birthdate":
         state["data"]["birthdate"] = text
         state["step"] = "done"
